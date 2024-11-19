@@ -32,9 +32,7 @@ import java.util.Date;
 public class AuthenticationService {
         UserReponsitory userReponsitory;
         @NonFinal
-
-        protected  String SIGNER_KEY =
-                "kuHxo8Dl9MNwLGfA8aBN24XzFC38jhkS3SoDxZNYzPcdprNiohVdKPWt13AHEQYe";
+        protected  String SIGNER_KEY = "kuHxo8Dl9MNwLGfA8aBN24XzFC38jhkS3SoDxZNYzPcdprNiohVdKPWt13AHEQYe";
 
         public IntrospectResponse introspect(IntrospectResquest resquest) throws JOSEException, ParseException {
             var token = resquest.getToken();
@@ -56,7 +54,6 @@ public class AuthenticationService {
             PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
             var user = userReponsitory.findByUsername(resquest.getUsername())
                     .orElseThrow(()-> new AppException(ErrorCode.USERNAME_NOT_VALIDAL));
-
 
             boolean authenticated =  passwordEncoder.matches(resquest.getPassword(),
                     user.getPassword());
